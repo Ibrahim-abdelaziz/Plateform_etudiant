@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+{% load crispy_forms_tags %}
+<head>
+    {% load static %}
+
+    <title> {{ titre }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>EST_CASABLANCA</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{% static 'img/icon.png' %}" />
+</head>
+<style type="text/css">
+    h1 {
+        font-size: 80px;font-family: 'Quicksand', sans-serif;
+    }
+    body,p,a,h2{
+        font-family: 'Quicksand', sans-serif;
+    }
+
+</style>
+<body>
+    <header>
+        <nav class="navbar fixed-top navbar-expand-lg indigo navbar-dark red">
+            <div class="container">
+                <a class="navbar-brand" style="padding-right:20px;" href="{% url 'plateformetudiant:home' %}"><i class="fas fa-school"></i>&nbsp&nbsp&nbsp<strong>EST CASABLANCA</strong></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+        </nav>
+        <div class="view intro-2" style="background-image: url({% static 'img/vote.jpg' %});">
+            <div class="full-bg-img">
+                <div class="mask rgba-black-strong flex-center">
+                    <div class="container">
+                        <div class="white-text text-center wow fadeInUp font1">
+                            <h1>{{ titre }}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <div class="container">
+        <!-- Section: Team v.1 -->
+        <section class="team-section text-center my-5">
+<section class="team-section text-center my-5" style="margin-left: 185px;">
+  <div class="row">
+    <div class="col-lg-8 col-md-6 mb-lg-0 mb-5">
+                    <div class="avatar mx-auto">
+                        <img src="{{ candidat.candidat_img.url }}" class="rounded-circle z-depth-1" alt="Sample avatar" width="200px" height="200px">
+                    </div>
+      <h5 class="font-weight-bold mt-4 mb-3"> {{ candidat.candidat_allname }} </h5>
+      <p class="text-uppercase blue-text"><strong> {{ candidat.candidat_departement }} </strong></p>
+      <p>
+      Pour Un Changement radical 
+      Pour Les Etudiants
+      </p>
+            <div class="text-center">
+                <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalSubscriptionForm">Voter Pour Moi</a>
+            </div>
+    </div>
+    <!-- Grid column -->
+
+
+
+  </div>
+  <!-- Grid row -->
+
+</section>
+         
+            <div class="modal fade" id="modalSubscriptionForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form action="{% url 'plateformetudiant:addvote' candidat.id%}" method="POST"> 
+                                    {% csrf_token %}  {% csrf_token %}
+                           <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold">Voter Sur Votre President</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body mx-3">
+                            <div class="md-form mb-5">
+                                <input type="text" id="form3" class="form-control validate" placeholder="Le Nom De L'electeur" 
+                                  name="electeur_allname">
+                                <label data-error="wrong" data-success="right" for="form3"></label>
+                            </div>
+
+                            <div class="md-form mb-4">
+                                <input type="text" id="form2" class="form-control validate" placeholder="Le CIN De L'electeur" name="electeur_cin">
+                                <label data-error="wrong" data-success="right" for="form2"></label>
+                            </div>
+                            <label>Departement</label>
+
+                            <div class="md-form mb-4">
+                                <select class="browser-default custom-select mb-4" name="Departement">
+                                    <option value="" disabled>choisir Votre Candidat</option>
+                                    {% for Departement in Departements%}
+                                    <option value="{{ Departement }}">{{ Departement }}</option>
+                                    {% endfor%}
+                                </select>
+                            </div>
+
+                            <label>Candidat</label>
+
+                            <div class="md-form mb-4">
+                                <select class="browser-default custom-select mb-4">
+                                    <option value="" disabled>Choose option</option>
+                                    <option value="1">{{ candidat.candidat_allname }}</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button type="submit" class="btn btn-indigo">Voter <i class="fas fa-paper-plane-o ml-1"></i></button>
+                        </div>
+
+                        </form>
+                      
+                    </div>
+                </div>
+            </div>
+
+      
+            <!-- Grid row -->
+            <div class="row">
+
+            </div>
+            <!-- Grid row -->
+
+        </section>
+        <!-- Section: Team v.1 -->
+
+    </div>
+        <footer class="page-footer font-small unique-color-dark">
+
+        <div style="background-color: #3f51b5;">
+            <div class="container">
+
+                <!-- Grid row-->
+                <div class="row py-4 d-flex align-items-center">
+
+                    <!-- Grid column -->
+                    <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+                        <h6 class="mb-0">ESTC sur Les Reseau Sociaux</h6>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-6 col-lg-7 text-center text-md-right">
+
+                        <!-- Facebook -->
+                        <a class="fb-ic">
+                            <i class="fab fa-facebook-f white-text mr-4"> </i>
+                        </a>
+                        <!-- Twitter -->
+                        <a class="tw-ic">
+                            <i class="fab fa-twitter white-text mr-4"> </i>
+                        </a>
+                        <!-- Google +-->
+                        <a class="gplus-ic">
+                            <i class="fab fa-google-plus-g white-text mr-4"> </i>
+                        </a>
+                        <!--Linkedin -->
+                        <a class="li-ic">
+                            <i class="fab fa-linkedin-in white-text mr-4"> </i>
+                        </a>
+                        <!--Instagram-->
+                        <a class="ins-ic">
+                            <i class="fab fa-instagram white-text"> </i>
+                        </a>
+
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+                <!-- Grid row-->
+
+            </div>
+        </div>
+
+        <!-- Footer Links -->
+        <div class="container text-center text-md-left mt-5">
+
+            <!-- Grid row -->
+            <div class="row mt-3">
+
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+                    <!-- Content -->
+                    <h6 class="text-uppercase font-weight-bold">EST CASABLANCA</h6>
+                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                    <p>est l'une des plus importantes EST du Maroc, fondée en 1986, avec ses 5 départements d'enseignement, 10 spécialités en formation initiale dans les domaines du secondaire et tertiaire</p>
+
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+                    <!-- Links -->
+                    <h6 class="text-uppercase font-weight-bold">nous contacter</h6>
+                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                    <p>
+                        <i class="fas fa-home mr-3"></i> Ecole Supérieure de Technologie , Route d'Eljadida,
+KM 7, CASABLANCA, Maroc</p>
+                    <p>
+                        <i class="fas fa-envelope mr-3"></i> estcasa@est-uh2c.ac.ma </p>
+                    <p>
+                        <i class="fas fa-phone mr-3"></i>Tél:212614000418/19/20/21/22</p>
+                    <p>
+                        <i class="fas fa-print mr-3"></i> Fax: 212 522 252 245</p>
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row -->
+
+        </div>
+        <!-- Footer Links -->
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2018 Copyright:
+            <a href="https://ESTC/education/bootstrap/"> ESTC</a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+
+    <script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/mdb.js' %}"></script>
+</body>
+
+</html>

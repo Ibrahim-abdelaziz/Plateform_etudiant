@@ -1,0 +1,35 @@
+<html>
+   <head>
+    {% load static %}
+       <meta charset="utf-8">
+
+<
+    </head>
+    <body>
+ <TABLE ALIGN="CENTER" BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="100%" HEIGHT="100%" BGCOLOR="#C0C0C0" >
+   <TR>
+    <TD><IMG SRC="{% static 'img/EST_casa.jpg' %}" BORDER="0" ALIGN="BOTTOM" WIDTH="100%" HEIGHT="100%" ALT="EST_casa"></TD>
+<td>
+ <form  method="POST">{% csrf_token %}
+
+    <input type="text" placeholder="Code apogee" id="Code_apogee">
+  <input type="text" placeholder="nom" id="nom">
+
+  <input type="text" placeholder="prenom" id="prenom">
+     <input type="text" placeholder="CIN" id="CIN">
+     <input type="text" placeholder="Filiere" id="Filiere">
+    <input type="text" placeholder="Cne" id="cne">
+
+
+
+
+    <input type="submit" value="je suis etudiant de EST casa"></a>
+
+
+
+ </form>
+</td>
+   </TR>
+ </TABLE>
+</body>
+</html>
